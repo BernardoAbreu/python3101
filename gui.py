@@ -1,9 +1,13 @@
-from tkinter import *
-from mapview import *
 from ga import *
 
+from tkinter import *
+from mapview import *
+from menuview import *
+from newcitypane import *
+
 root = Tk()
-root.resizable(width=FALSE, height=FALSE)
+root.config(width=840);
+root.resizable(width=FALSE, height=FALSE);
 
 mp = MapView(root);
 
@@ -21,10 +25,22 @@ mmap.addCity(City(5, 133,"Cidade10"));
 
 mp.drawCities(mmap);
 
-f = Frame(root, width=400, height=100);
-t = Label(f, text="First")
-f.grid(row=0,column=1)
-t.pack()
+mn = MenuFrame(root);
+
+def test():
+	print('hello');
+	mn.runButton.config(text='Running',state=DISABLED);
+
+mn.setRunCallback(test);
+
+def newCityEvent():
+	print('event');
+	NewCityPane(mmap,mp.drawCities);
+
+mn.setAddCallback(newCityEvent);
+
+# NewCityPane(mmap);
+
 # f.pack(side=LEFT);
 # w.grid(row=1);
 

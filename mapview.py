@@ -5,7 +5,7 @@ class MapView:
 		self.canvas = Canvas(master, width=640, height=480);
 		self.canvas.grid(row=0,column=0);
 
-		self.canvas.create_line(0, 0, 640, 480)
+		self.canvas.create_line(0, 0, 640, 480, arrow='last')
 
 	def drawCities(self,mmap):
 		for c in mmap.cityList:
