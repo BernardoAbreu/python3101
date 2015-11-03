@@ -25,14 +25,12 @@ class MapView:
 			#self.canvas.create_text(c.x+10,c.y+10, text=c.getName(), fill="#a52a2a", justify=RIGHT)
 			self.canvas.create_oval(c.x*self.newwidth,c.y*self.newheight,c.x*self.newwidth+6,c.y*self.newheight+6)
 			self.canvas.create_text(c.x*self.newwidth+16,c.y*self.newheight+16, text=c.getName(), fill="#a52a2a", justify=RIGHT)
-			
+
 	def clear(self):
 		self.canvas.delete(ALL)
 
-	def drawPath(self,lista):
-
-
-		for i,j in zip(lista,range(len(lista)-1)):
+	def drawPath(self,cList):
+		for i,j in zip(cList,range(len(lista)-1)):
 			print(i,j)
 			self.canvas.create_line(self.mmap.cityList[i].getX()*self.newwidth+3,self.mmap.cityList[i].getY()*self.newheight+3,
-				self.mmap.cityList[lista[j+1]].getX()*self.newwidth+3,self.mmap.cityList[lista[j+1]].getY()*self.newheight+3, arrow=LAST) 
+				self.mmap.cityList[cList[j+1]].getX()*self.newwidth+3,self.mmap.cityList[cLista[j+1]].getY()*self.newheight+3, arrow=LAST) 
