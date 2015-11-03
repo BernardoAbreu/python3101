@@ -107,66 +107,46 @@ class Population:
         self.pop.pop(len(self.pop)-1);
         self.bestIndividual.pop(len(self.bestIndividual)-1);
         self.evaluation.pop(len(self.evaluation)-1);
+
+    def runGA(self,iterations):
+        self.evaluate();
+        for i in range(iterations):
+            self.evolve();
+            self.evaluate();
+                
+            if False and len(self.pop) > 1:
+                if self.bestIndividual[-1][0] > self.bestIndividual[-2][0]:
+                    self.discardLastPop();
+                elif self.bestIndividual[-1][0] == self.bestIndividual[-2][0] and self.evaluation[-1] > self.evaluation[-2]:
+                    self.discardLastPop();
             
             
         
-mmap=Map();
-mmap.addCity(City(0,20,"Cidade1"));
-mmap.addCity(City(100,0,"Cidade2"));
-mmap.addCity(City(80,50,"Cidade3"));
-mmap.addCity(City(90,5,"Cidade4"));
-mmap.addCity(City(120,100,"Cidade5"));
-mmap.addCity(City(50,80,"Cidade6"));
-mmap.addCity(City(75,200,"Cidade7"));
-mmap.addCity(City(175, 33,"Cidade8"));
-mmap.addCity(City(65, 80,"Cidade9"));
-mmap.addCity(City(5, 133,"Cidade10"));
-mmap.addCity(City(65, 29,"Cidade11"));           
-mmap.addCity(City(30, 90,"Cidade12"));
-mmap.addCity(City(70, 150,"Cidade13"));
 
-import time
-if False:
-    tbegin = time.clock();
-    best = [50000,0];
-    perm = list(itertools.permutations(range(mmap.size())));
-    print(len(perm));
-    for path in perm:
-        distance = 0;
-        for i in range(mmap.size()-1):
-            distance += mmap.getDistanceFromInx(path[i],path[i+1]);                  
-        if distance < best[0]:
-            best = [distance, path][:];
+
+
+# if False:
+#     tbegin = time.clock();
+#     best = [50000,0];
+#     perm = list(itertools.permutations(range(mmap.size())));
+#     print(len(perm));
+#     for path in perm:
+#         distance = 0;
+#         for i in range(mmap.size()-1):
+#             distance += mmap.getDistanceFromInx(path[i],path[i+1]);                  
+#         if distance < best[0]:
+#             best = [distance, path][:];
             
-    print(best);
-    print(time.clock()-tbegin); 
-    print('GAA');   
+#     print(best);
+#     print(time.clock()-tbegin); 
+#     print('GAA');   
                                                        
 
-tbegin = time.clock();        
-p = Population(200, mmap);
-p.evaluate();
+      
+
 ##print(p.bestIndividual[-1]);
 
 
-for i in range(2000):
-    p.evolve();
-    p.evaluate();
-    
-    #if len(p.pop) > 50 and p.bestIndividual[-1][0] == p.bestIndividual[-50][0]:
-        #print('stopped at iteration'+str(i));
-        #break;
-        
-    if False and len(p.pop) > 1:
-        if p.bestIndividual[-1][0] > p.bestIndividual[-2][0]:
-            p.discardLastPop();
-        elif p.bestIndividual[-1][0] == p.bestIndividual[-2][0] and p.evaluation[-1] > p.evaluation[-2]:
-            p.discardLastPop();
-#    else:
-#        print(p.bestIndividual[-1]);
-        
-    if p.bestIndividual[-1] == best:
-        break;
-print(p.bestIndividual[-1]);
-    
-print(time.clock()-tbegin);        
+
+
+       
