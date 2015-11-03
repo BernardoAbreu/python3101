@@ -37,3 +37,6 @@ class MenuFrame:
 	def setAddCallback(self,callback):
 		self.addButton.config(command=callback);
 
+	def setLoadExCallback(self,callback):
+		self.exButton.config(command=callback);
+

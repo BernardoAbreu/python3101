@@ -35,11 +35,15 @@ mn.setRunCallback(test);
 
 def newCityEvent():
 	print('event');
-	NewCityPane(mmap,mp.drawCities);
+	NewCityPane(mmap,mp.redrawCities);
 
 mn.setAddCallback(newCityEvent);
 
 # NewCityPane(mmap);
+
+
+# mp.drawPath([7,6,5,4,3,9,8,2,1,0]);
+
 
 # f.pack(side=LEFT);
 # w.grid(row=1);
