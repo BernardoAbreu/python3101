@@ -20,6 +20,7 @@ class City:
 class Map:
     def __init__(self):
         self.cityList = [];
+        self.start = 0;
         
     def addCity(self, city):
         self.cityList.append(city);
@@ -32,6 +33,12 @@ class Map:
         
     def getDistanceFromInx(self, inx1, inx2):
         return self.getDistance(self.cityList[inx1],self.cityList[inx2]);
+
+    def setStartCity(self,inx):
+        self.start = inx;
+
+    def clear(self):
+        self.cityList = [];
 
 class Population:
     mutationRatio = 0.2;
@@ -46,8 +53,10 @@ class Population:
         self.evaluation = [];
         self.pop.insert(0, []);
         for i in range(size):
-            l = list(range(cMap.size()));
+            l = list(range(self.cMap.size()));
+            l.remove(self.cMap.start);
             random.shuffle(l);
+            l.insert(0,self.cMap.start);
             self.pop[0].append( l[:] );
         
     def evaluate(self):
@@ -69,25 +78,37 @@ class Population:
         parent2 = self.nextGenParents[int(random.random() * len(self.nextGenParents))][:];
         child = [-1]*self.cMap.size();
         
-        begin = int(random.random() * self.cMap.size()-1);
-        end = int(random.random() * self.cMap.size()-1);
+        begin = random.randint(1,self.cMap.size()-1);
+        end = random.randint(1,self.cMap.size()-1);
+        
         if begin>end:
             begin,end = end,begin;
+        child[0] = self.cMap.start;
+        # print('begin ' + str(begin));
+        # print('end ' + str(end));
         for i in range(begin,end+1):
+            # print('par1' + str(parent1));
+            # print('par2' + str(parent2));
+            # print('chl' + str(child));
             child[i] = parent1[i];
+            # print(parent1[i]);
             parent2.remove(parent1[i]);
-        for i in range(begin):
+        parent2.pop(0);
+        for i in range(1,begin):
             child[i] = parent2.pop(0);
         for i in range(end+1,self.cMap.size()):
-            child[i] = parent2.pop(0);        
-            
+            child[i] = parent2.pop(0);
+        
+        # child.remove(self.start);
+        # child.insert(0,self.start);
+
         return child[:];
 
     def mutateLastAdded(self):
         for i in range(self.cMap.size()):
             if random.random() < self.mutationRatio:
-                inx1 = int(random.random() * self.cMap.size()-1);
-                inx2 = int(random.random() * self.cMap.size()-1);
+                inx1 = random.randint(1,self.cMap.size()-1);
+                inx2 = random.randint(1,self.cMap.size()-1);
                 self.pop[-1][-1][inx1],self.pop[-1][-1][inx2] = self.pop[-1][-1][inx2],self.pop[-1][-1][inx1];
             
     def evolve(self):
@@ -107,6 +128,9 @@ class Population:
         self.pop.pop(len(self.pop)-1);
         self.bestIndividual.pop(len(self.bestIndividual)-1);
         self.evaluation.pop(len(self.evaluation)-1);
+
+    def getBestIndividual(self):
+        return self.bestIndividual[-1];
 
     def runGA(self,iterations):
         self.evaluate();
