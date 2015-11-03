@@ -20,7 +20,8 @@ mmap.addCity(City(65, 80,"Cidade9"));
 mmap.addCity(City(5, 133,"Cidade10"));
 
 mp.drawCities(mmap);
-
+mp.drawPath([7,6,5,4,3,9,8,2,1,0]);
+mp.clear()
 f = Frame(root, width=400, height=100);
 t = Label(f, text="First")
 f.grid(row=0,column=1)
