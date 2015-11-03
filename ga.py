@@ -105,7 +105,7 @@ class Population:
         return child[:];
 
     def mutateLastAdded(self):
-        for i in range(self.cMap.size()):
+        for i in range(self.cMap.size()-1):
             if random.random() < self.mutationRatio:
                 inx1 = random.randint(1,self.cMap.size()-1);
                 inx2 = random.randint(1,self.cMap.size()-1);
