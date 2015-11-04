@@ -5,6 +5,7 @@ from mapview import *
 from menuview import *
 from newcitypane import *
 from rmcitypane import *
+from changestartpane import *
 
 root = Tk()
 root.title('Genetic TSP');
@@ -18,6 +19,8 @@ mmap= Map();
 mn = MenuFrame(root);
 
 def runEvent():
+	if(len(mmap.cityList)<2):
+		return;
 	mn.runButton.config(text='Running',state=DISABLED);
 	root.update();
 	p = Population(int(mn.popEntry.get()), mmap);
@@ -31,37 +34,56 @@ def runEvent():
 	mp.drawPath(best[1]);
 	mn.updateResultLabel('  '+str(round(best[0],2)));
 
+def redrawHelper(mmap):
+	mp.redrawCities(mmap);
+	showNewStart();
+	root.update();
 
 mn.setRunCallback(runEvent);
 
 def newCityEvent():
-	NewCityPane(mmap,mp.redrawCities);
+	NewCityPane(mmap,redrawHelper);
 
 mn.setAddCallback(newCityEvent);
 
 def rmCityEvent():
-	RemoveCityPane(mmap,mp.redrawCities);
+	RemoveCityPane(mmap,redrawHelper);
 
 mn.setRmCallback(rmCityEvent);
 
 def loadExamplesEvent():
 	mp.clear();
+	mmap.start = 0;
 	mmap.cityList = [];
-	mmap.addCity(City(50,20,"Cidade1"));
-	mmap.addCity(City(100,0,"Cidade2"));
-	mmap.addCity(City(80,50,"Cidade3"));
-	mmap.addCity(City(90,5,"Cidade4"));
-	mmap.addCity(City(120,100,"Cidade5"));
-	mmap.addCity(City(50,80,"Cidade6"));
-	mmap.addCity(City(75,120,"Cidade7"));
-	mmap.addCity(City(130, 43,"Cidade8"));
-	mmap.addCity(City(65, 80,"Cidade9"));
-	mmap.addCity(City(5, 133,"Cidade10"));
-	mmap.addCity(City(65, 29,"Cidade11"));           
-	mmap.addCity(City(30, 90,"Cidade12"));
-	mmap.addCity(City(70, 150,"Cidade13"));
+	mmap.addCity(City(50,20,"Dummy 1"));
+	mmap.addCity(City(100,0,"Dummy 2"));
+	mmap.addCity(City(80,50,"Dummy 3"));
+	mmap.addCity(City(90,5,"Dummy 4"));
+	mmap.addCity(City(120,100,"Dummy 5"));
+	mmap.addCity(City(50,80,"Dummy 6"));
+	mmap.addCity(City(75,120,"Dummy 7"));
+	mmap.addCity(City(130, 43,"Dummy 8"));
+	mmap.addCity(City(65, 90,"Dummy 9"));
+	mmap.addCity(City(5, 133,"Dummy 10"));
+	mmap.addCity(City(65, 29,"Dummy 11"));           
+	mmap.addCity(City(30, 90,"Dummy 12"));
+	mmap.addCity(City(70, 150,"Dummy 13"));
 	mp.drawCities(mmap);
+	showNewStart();
 
 mn.setLoadExCallback(loadExamplesEvent);
+
+def showNewStart():
+	if(len(mmap.cityList)>0):
+		label = mmap.cityList[mmap.start].name;
+	else:
+		label = '(no cities)';
+	mn.updateStartLabel(label);
+
+def changeStartEvent():
+	ChangeStartPane(mmap,showNewStart);
+
+mn.setChangeStartCallback(changeStartEvent);
+
 
 root.mainloop();

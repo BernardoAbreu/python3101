@@ -10,6 +10,9 @@ class MapView:
 		self.drawCities(mmap);
 
 	def drawCities(self,mmap):
+		if(len(mmap.cityList)==0):
+			return;
+
 		maxwidth=0
 		maxheight=0
 		for c in mmap.cityList:

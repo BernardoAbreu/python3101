@@ -12,14 +12,19 @@ def textField(parent,label,entryWidth):
 class MenuFrame:
 	def __init__(self,master):
 		self.frame = Frame(master, width=300, height=480);
-		self.frame.grid(row=0,column=1,sticky=N+S,padx=20,pady=20);
+		self.frame.grid(row=0,column=1,sticky=N+S,padx=20,pady=10);
 		self.exButton = Button(self.frame, text="Load example");
 		self.exButton.pack(anchor=N,side=TOP,fill=X,pady=5);
 		self.addButton = Button(self.frame, text="Add city");
 		self.addButton.pack(anchor=N,side=TOP,fill=X,pady=5);
 		self.rmButton = Button(self.frame, text="Remove city");
 		self.rmButton.pack(anchor=N,side=TOP,fill=X,pady=5);
-		Frame(self.frame,height=30).pack(side=TOP);
+		Frame(self.frame,height=15).pack(side=TOP);
+		self.startLabel = Label(self.frame, text='Start: (no cities)');
+		self.startLabel.pack(anchor=W,side=TOP);
+		self.changeStartButton = Button(self.frame, text="Change start");
+		self.changeStartButton.pack(anchor=N,side=TOP,fill=X,pady=5);
+		Frame(self.frame,height=15).pack(side=TOP);
 		self.popEntry = textField(self.frame,'Population Size:',5);
 		self.popEntry.set(200);
 		self.itEntry = textField(self.frame,'Iterations:',5);
@@ -31,7 +36,7 @@ class MenuFrame:
 		self.crossoverEntry = textField(self.frame,'Crossover Slice:',5);
 		self.crossoverEntry.set(0.8);
 		self.runButton = Button(self.frame, text="Run!");
-		self.runButton.pack(anchor=N,side=TOP,fill=X,pady=15);
+		self.runButton.pack(anchor=N,side=TOP,fill=X,pady=10);
 		self.result1 = Label(self.frame, text='');
 		self.result1.pack(anchor=W,side=TOP);
 		self.result2 = Label(self.frame, text='');
@@ -49,7 +54,13 @@ class MenuFrame:
 	def setLoadExCallback(self,callback):
 		self.exButton.config(command=callback);
 
+	def setChangeStartCallback(self,callback):
+		self.changeStartButton.config(command=callback);
+
 	def updateResultLabel(self,text):
 		self.result1.config(text='Distance:');
 		self.result2.config(text=text);
+
+	def updateStartLabel(self,text):
+		self.startLabel.config(text='Start: '+text);
 

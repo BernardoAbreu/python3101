@@ -84,23 +84,14 @@ class Population:
         if begin>end:
             begin,end = end,begin;
         child[0] = self.cMap.start;
-        # print('begin ' + str(begin));
-        # print('end ' + str(end));
         for i in range(begin,end+1):
-            # print('par1' + str(parent1));
-            # print('par2' + str(parent2));
-            # print('chl' + str(child));
             child[i] = parent1[i];
-            # print(parent1[i]);
             parent2.remove(parent1[i]);
         parent2.pop(0);
         for i in range(1,begin):
             child[i] = parent2.pop(0);
         for i in range(end+1,self.cMap.size()):
             child[i] = parent2.pop(0);
-        
-        # child.remove(self.start);
-        # child.insert(0,self.start);
 
         return child[:];
 
@@ -137,10 +128,4 @@ class Population:
         for i in range(iterations):
             self.evolve();
             self.evaluate();
-                
-            if False and len(self.pop) > 1:
-                if self.bestIndividual[-1][0] > self.bestIndividual[-2][0]:
-                    self.discardLastPop();
-                elif self.bestIndividual[-1][0] == self.bestIndividual[-2][0] and self.evaluation[-1] > self.evaluation[-2]:
-                    self.discardLastPop();
                   
