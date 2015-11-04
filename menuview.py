@@ -23,7 +23,7 @@ class MenuFrame:
 		self.popEntry = textField(self.frame,'Population Size:',5);
 		self.popEntry.set(200);
 		self.itEntry = textField(self.frame,'Iterations:',5);
-		self.itEntry.set(2000);
+		self.itEntry.set(3000);
 		self.mutEntry = textField(self.frame,'Mutation Ratio:',5);
 		self.mutEntry.set(0.2);
 		self.elitismEntry = textField(self.frame,'Elitism Ratio:',5);

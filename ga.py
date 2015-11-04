@@ -143,34 +143,4 @@ class Population:
                     self.discardLastPop();
                 elif self.bestIndividual[-1][0] == self.bestIndividual[-2][0] and self.evaluation[-1] > self.evaluation[-2]:
                     self.discardLastPop();
-            
-            
-        
-
-
-
-# if False:
-#     tbegin = time.clock();
-#     best = [50000,0];
-#     perm = list(itertools.permutations(range(mmap.size())));
-#     print(len(perm));
-#     for path in perm:
-#         distance = 0;
-#         for i in range(mmap.size()-1):
-#             distance += mmap.getDistanceFromInx(path[i],path[i+1]);                  
-#         if distance < best[0]:
-#             best = [distance, path][:];
-            
-#     print(best);
-#     print(time.clock()-tbegin); 
-#     print('GAA');   
-                                                       
-
-      
-
-##print(p.bestIndividual[-1]);
-
-
-
-
-       
+                  

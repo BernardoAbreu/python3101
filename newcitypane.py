@@ -24,9 +24,7 @@ class NewCityPane:
 		self.x = inlineTextField(f,'X:',5,1,0);
 		self.y = inlineTextField(f,'Y:',5,1,1);
 		self.addButton = Button(f, text="Save", command=self.handleAddition);
-		# self.runButton.pack(anchor=N,side=TOP,fill=X,pady=15);
 		self.addButton.grid(row=2,columnspan=2,pady=10,sticky=W+E);
-		# f.grid(row=0,column=1,sticky=N+S,padx=20,pady=20);
 
 	def handleAddition(self):
 		self.mmap.addCity(City(int(self.x.get()),int(self.y.get()),self.name.get()));

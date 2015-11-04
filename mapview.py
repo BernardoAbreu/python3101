@@ -31,6 +31,5 @@ class MapView:
 
 	def drawPath(self,cList):
 		for i,j in zip(cList,range(len(cList)-1)):
-			print(i,j)
 			self.canvas.create_line(self.mmap.cityList[i].getX()*self.newwidth+5,self.mmap.cityList[i].getY()*self.newheight+5,
 				self.mmap.cityList[cList[j+1]].getX()*self.newwidth+5,self.mmap.cityList[cList[j+1]].getY()*self.newheight+5, arrow=LAST) 

@@ -7,6 +7,7 @@ from newcitypane import *
 from rmcitypane import *
 
 root = Tk()
+root.title('Genetic TSP');
 root.config(width=840);
 root.resizable(width=FALSE, height=FALSE);
 
@@ -53,22 +54,14 @@ def loadExamplesEvent():
 	mmap.addCity(City(120,100,"Cidade5"));
 	mmap.addCity(City(50,80,"Cidade6"));
 	mmap.addCity(City(75,120,"Cidade7"));
-	mmap.addCity(City(150, 33,"Cidade8"));
+	mmap.addCity(City(130, 43,"Cidade8"));
 	mmap.addCity(City(65, 80,"Cidade9"));
 	mmap.addCity(City(5, 133,"Cidade10"));
 	mmap.addCity(City(65, 29,"Cidade11"));           
 	mmap.addCity(City(30, 90,"Cidade12"));
+	mmap.addCity(City(70, 150,"Cidade13"));
 	mp.drawCities(mmap);
 
 mn.setLoadExCallback(loadExamplesEvent);
-
-# NewCityPane(mmap);
-
-
-# mp.drawPath([7,6,5,4,3,9,8,2,1,0]);
-
-
-# f.pack(side=LEFT);
-# w.grid(row=1);
 
 root.mainloop();
