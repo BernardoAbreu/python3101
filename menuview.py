@@ -19,17 +19,23 @@ class MenuFrame:
 		self.addButton.pack(anchor=N,side=TOP,fill=X,pady=5);
 		self.rmButton = Button(self.frame, text="Remove city");
 		self.rmButton.pack(anchor=N,side=TOP,fill=X,pady=5);
-		Frame(self.frame,height=50).pack(side=TOP);
+		Frame(self.frame,height=30).pack(side=TOP);
 		self.popEntry = textField(self.frame,'Population Size:',5);
-		self.popEntry.set(100);
+		self.popEntry.set(200);
 		self.itEntry = textField(self.frame,'Iterations:',5);
-		self.itEntry.set(1000);
+		self.itEntry.set(2000);
 		self.mutEntry = textField(self.frame,'Mutation Ratio:',5);
 		self.mutEntry.set(0.2);
 		self.elitismEntry = textField(self.frame,'Elitism Ratio:',5);
 		self.elitismEntry.set(0.6);
+		self.crossoverEntry = textField(self.frame,'Crossover Slice:',5);
+		self.crossoverEntry.set(0.8);
 		self.runButton = Button(self.frame, text="Run!");
 		self.runButton.pack(anchor=N,side=TOP,fill=X,pady=15);
+		self.result1 = Label(self.frame, text='');
+		self.result1.pack(anchor=W,side=TOP);
+		self.result2 = Label(self.frame, text='');
+		self.result2.pack(anchor=W,side=TOP);
 
 	def setRunCallback(self,callback):
 		self.runButton.config(command=callback);
@@ -37,6 +43,13 @@ class MenuFrame:
 	def setAddCallback(self,callback):
 		self.addButton.config(command=callback);
 
+	def setRmCallback(self,callback):
+		self.rmButton.config(command=callback);
+
 	def setLoadExCallback(self,callback):
 		self.exButton.config(command=callback);
+
+	def updateResultLabel(self,text):
+		self.result1.config(text='Distance:');
+		self.result2.config(text=text);
 
